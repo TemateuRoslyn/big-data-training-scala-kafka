@@ -4,7 +4,6 @@
 
 # run file
 
-package-scala.sh
 run-scala.sh
 
 consumer-1.sh
