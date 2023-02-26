@@ -9,88 +9,18 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>big-data-training-scala-kafka</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <properties>
-
     <packaging>jar</packaging>
+    <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>8</maven.compiler.source>
-    <maven.compiler.target>8</maven.compiler.target>
-
-    <kafka.version>3.3.1</kafka.version>
-    <log4j.version>2.17.2</log4j.version>
-    <scala.language.version>2.12.10</scala.language.version>
+    <kafka.version>3.3.1</kafka.version> 
+    <scala.version>2.12.10</scala.version>  
     <app.mainClass>com.softmaes.BigDataTrainingScalaApplication</app.mainClass>
-
   </properties>
 
   <dependencies>
 
-    <!-- ================== -->
-    <!-- ================== -->
-    <!-- ================== -->
-    <!-- ================== -->
-    <!-- ================== -->
-    <!-- kafka  depencies -->
-
-
-    <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka -->
-    <dependency>
-        <groupId>org.apache.kafka</groupId>
-        <artifactId>kafka_2.13</artifactId>
-        <version>${kafka.version}</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
-    <dependency>
-        <groupId>org.apache.kafka</groupId>
-        <artifactId>kafka-clients</artifactId>
-        <version>${kafka.version}</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams -->
-    <dependency>
-        <groupId>org.apache.kafka</groupId>
-        <artifactId>kafka-streams</artifactId>
-        <version>${kafka.version}</version>
-    </dependency>
-
-    <!-- ================== -->
-    <!-- ================== -->
-    <!-- ================== -->
-    <!-- ================== -->
-    <!-- ================== -->
-    <!-- scala  depencies -->
-
-    <dependency>
-        <groupId>org.scala-lang</groupId>
-        <artifactId>scala-library</artifactId>
-        <version>${scala.language.version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-core</artifactId>
-        <version>${log4j.version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-api</artifactId>
-        <version>${log4j.version}</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.scalatest/scalatest -->
-    <dependency>
-        <groupId>org.scalatest</groupId>
-        <artifactId>scalatest_2.12</artifactId>
-        <version>3.2.14</version>
-        <scope>test</scope>
-    </dependency>
-
-    <!-- junit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -98,69 +28,46 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka-clients</artifactId>
+        <version>${kafka.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.scala-lang</groupId>
+        <artifactId>scala-library</artifactId>
+        <version>${scala.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.scalatest</groupId>
+        <artifactId>scalatest_2.12</artifactId>
+        <version>3.2.14</version>
+        <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
-        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
-        </plugin>
-        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
+
+    <plugins>
+
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.3</version>
+          <inherited>true</inherited>
           <configuration>
-                <archive>
-                    <manifest>
-                        <addClasspath>true</addClasspath>
-                        <classpathPrefix>lib/</classpathPrefix>
-                        <mainClass>${app.mainClass}</mainClass>
-                    </manifest>
-                </archive>
+              <source>${java.version}</source>
+              <target>${java.version}</target>
           </configuration>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
-        <plugin>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.7.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
+      </plugin>
 
-        <!-- scala plugins -->
-
-
-
-        <!-- Use build-helper-maven-plugin to add Scala source and test source directories -->
-        <plugin>
+      <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>build-helper-maven-plugin</artifactId>
-            <version>3.0.0</version>
+            <version>1.10</version>
             <executions>
                 <execution>
                     <id>add-source</id>
@@ -171,58 +78,102 @@
                     <configuration>
                         <sources>
                             <source>src/main/scala</source>
+                            <source>${project.build.directory}/generated-sources</source>
+                        </sources>
+                    </configuration>
+                </execution>
+                <execution>
+                    <id>add-test-source</id>
+                    <phase>generate-test-sources</phase>
+                    <goals>
+                        <goal>add-test-source</goal>
+                    </goals>
+                    <configuration>
+                        <sources>
+                            <source>src/test/scala</source>
+                            <source>${project.build.directory}/generated-sources</source>
                         </sources>
                     </configuration>
                 </execution>
             </executions>
         </plugin>
 
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+          <configuration>
+              <archive>
+                  <manifest>
+                      <addClasspath>true</addClasspath>
+                      <classpathPrefix>libs/</classpathPrefix>
+                      <mainClass>${app.mainClass}</mainClass>
+                  </manifest>
+              </archive>
+          </configuration>
+        </plugin>
 
-        <!-- Use scala-maven-plugin for Scala support -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>
+                            ${project.build.directory}/libs
+                        </outputDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
 
-          <plugin>
-                <groupId>org.scala-tools</groupId>
-                <artifactId>maven-scala-plugin</artifactId>
-                <version>2.12.1</version>
-                <executions>
-                    <execution>
-                        <id>scala-compile-first</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>scala-test-compile</id>
-                        <phase>process-test-resources</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <scalaVersion>${scala.language.version}</scalaVersion>
-                    <launchers>
-                      <launcher>
-                        <id>development</id>
-                        <mainClass>${app.mainClass}</mainClass>
-                         <!-- com .... args are optional  -->
-                        <args>
-                          <arg>arg1</arg>
-                        </args>
-                          <!-- com .... jvmArgs are optional -->
-                        <jvmArgs>
-                          <jvmArg>-Xmx512m</jvmArg>
-                          <jvmArg>-Djava.library.path=...</jvmArg>
-                        </jvmArgs>
-                      </launcher>
-                    </launchers>
-                </configuration>
-            </plugin>
+        <plugin>
+              <groupId>org.scala-tools</groupId>
+              <artifactId>maven-scala-plugin</artifactId>
+              <version>2.12.1</version>
+              <executions>
+                  <execution>
+                      <id>scala-compile-first</id>
+                      <phase>process-resources</phase>
+                      <goals>
+                          <goal>add-source</goal>
+                          <goal>compile</goal>
+                      </goals>
+                  </execution>
+                  <execution>
+                      <id>scala-test-compile</id>
+                      <phase>process-test-resources</phase>
+                      <goals>
+                          <goal>testCompile</goal>
+                      </goals>
+                  </execution>
+              </executions>
+              <configuration>
+                  <scalaVersion>${scala.version}</scalaVersion>
+                  <launchers>
+                    <launcher>
+                      <id>development</id>
+                      <mainClass>${app.mainClass}</mainClass>
+                        <!-- com .... args are optional  -->
+                      <args>
+                        <arg>arg1</arg>
+                      </args>
+                        <!-- com .... jvmArgs are optional -->
+                      <jvmArgs>
+                        <jvmArg>-Xmx512m</jvmArg>
+                        <jvmArg>-Djava.library.path=...</jvmArg>
+                      </jvmArgs>
+                    </launcher>
+                  </launchers>
+              </configuration>
+        </plugin>
 
 
-      </plugins>
-    </pluginManagement>
+    </plugins>
+
   </build>
 </project>

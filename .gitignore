@@ -1,3 +1,8 @@
 .metals
 .vscode/
 *.log
+
+# run file
+
+package-scala-run.sh
+run-scala.sh
