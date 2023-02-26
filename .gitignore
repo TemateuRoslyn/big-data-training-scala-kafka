@@ -4,5 +4,11 @@
 
 # run file
 
-package-scala-run.sh
+package-scala.sh
 run-scala.sh
+
+consumer-1.sh
+consumer-2.sh
+producer-1.sh
+producer-2.sh
+stop-docker.sh
